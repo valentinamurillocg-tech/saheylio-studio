@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Saheylio Studio | Producción y Estrategia</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@200;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fef9f1",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#006c4e",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#8b713b",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#32302b",
+                    "surface-container": "#f2ede5",
+                    "on-secondary-fixed-variant": "#00513d",
+                    "background": "#fef9f1",
+                    "surface-variant": "#e7e2da",
+                    "on-surface": "#1d1c17",
+                    "secondary-container": "#8af7cf",
+                    "outline": "#6d7a73",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002117",
+                    "on-tertiary-fixed": "#261900",
+                    "on-primary-fixed-variant": "#00513a",
+                    "secondary-fixed-dim": "#6edab4",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#8af7cf",
+                    "on-secondary-container": "#007257",
+                    "on-primary-fixed": "#002115",
+                    "on-background": "#1d1c17",
+                    "tertiary-fixed-dim": "#e3c285",
+                    "primary-container": "#008560",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f8f3eb",
+                    "primary-fixed-dim": "#68dbae",
+                    "primary-fixed": "#86f8c9",
+                    "primary": "#00694c",
+                    "surface-dim": "#ded9d2",
+                    "surface-container-high": "#ece8e0",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f5f0e8",
+                    "tertiary": "#715825",
+                    "secondary": "#006c52",
+                    "on-primary-container": "#f5fff7",
+                    "surface-container-highest": "#e7e2da",
+                    "tertiary-fixed": "#ffdea3",
+                    "inverse-primary": "#68dbae",
+                    "surface": "#fef9f1",
+                    "on-tertiary-fixed-variant": "#594312",
+                    "outline-variant": "#bccac1",
+                    "on-tertiary-container": "#fffbff",
+                    "on-surface-variant": "#3d4943"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Manrope', sans-serif; }
+      h1, h2, h3, .serif { font-family: 'Noto Serif', serif; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fef9f1]/60 dark:bg-[#1d1c17]/60 backdrop-blur-xl">
+<div class="flex justify-between items-center px-8 py-6 w-full max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold font-['Noto_Serif'] text-[#1d1c17] dark:text-[#fef9f1]">Saheylio Studio</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="text-[#00694c] dark:text-[#1D9E75] font-bold border-b-2 border-[#00694c] dark:border-[#1D9E75] pb-1 font-['Noto_Serif'] tracking-tight" href="#services">Services</a>
+<a class="text-[#1d1c17]/70 dark:text-[#fef9f1]/70 hover:text-[#00694c] transition-colors font-['Noto_Serif'] tracking-tight" href="#portfolio">Portfolio</a>
+<a class="text-[#1d1c17]/70 dark:text-[#fef9f1]/70 hover:text-[#00694c] transition-colors font-['Noto_Serif'] tracking-tight" href="#about">About</a>
+<a class="text-[#1d1c17]/70 dark:text-[#fef9f1]/70 hover:text-[#00694c] transition-colors font-['Noto_Serif'] tracking-tight" href="#contact">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-md font-label uppercase tracking-widest text-xs hover:opacity-80 transition-opacity active:scale-95">
+                Inquiry
+            </button>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Editorial Hero Section -->
+<section class="min-h-[921px] flex flex-col md:flex-row items-stretch px-8 md:px-16 gap-12 max-w-screen-2xl mx-auto py-12">
+<div class="w-full md:w-1/2 flex flex-col justify-center">
+<span class="text-primary font-label uppercase tracking-[0.2em] text-xs mb-6">Bogotá • Producción Estratégica</span>
+<h1 class="text-6xl md:text-8xl font-headline font-bold leading-[1.1] tracking-tight text-on-surface mb-8">
+                    Marcas que <br/>
+<span class="text-primary italic font-normal underline decoration-1 underline-offset-8">florecen</span>.
+                </h1>
+<p class="text-lg md:text-xl text-on-surface-variant max-w-md leading-relaxed font-body">
+                    Transformamos rigor estratégico en alma creativa. Saheylio Studio es el espacio donde la visión comercial se encuentra con la excelencia visual.
+                </p>
+<div class="mt-12 flex items-center gap-8">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-md font-label uppercase tracking-widest text-sm hover:opacity-90 transition-all">
+                        Explorar Portafolio
+                    </button>
+<a class="text-on-surface font-label uppercase tracking-widest text-xs border-b border-on-surface/20 hover:border-primary transition-all pb-1" href="#about">Conoce el estudio</a>
+</div>
+</div>
+<div class="w-full md:w-1/2 relative min-h-[500px]">
+<div class="absolute inset-0 bg-surface-container-low rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700" alt="Abstract artistic macro photography of deep green botanical leaves with soft golden light and morning dew, representing organic growth and creative vitality" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArDfnBXCN-_BmXOOBSNGtWPQd-1diU3wc5lPjn1uayrsqXRDOD6QygmNfWVc1mlPBuG3Xru-7Dk3nXS2nzPUdiT7eiRfn4YDIANw0aUfHK74jepp4O65oPzB1qGT3y46FaqH3ia1vG22sYXuiNQiDK69gfgkGTuBXbcei-kKlmrKzpcwoEAQNF0TDm1la7wX3RBek0dIKbUQu9LRheT4qMWXidVeM8OCOUX0qSYK4dD6ymEmHNJeSzSOrwwFK8Hq8CuR0Lp0H6zwsf"/>
+<div class="absolute bottom-8 right-8 bg-surface/90 backdrop-blur-md p-6 max-w-xs shadow-xl">
+<p class="text-xs font-label uppercase tracking-widest text-primary mb-2">Curated Canvas</p>
+<p class="text-sm italic font-headline text-on-surface leading-snug">"La creatividad sin estrategia es arte; con estrategia es crecimiento."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Banner (Moved Section) -->
+<section class="px-8 py-24">
+<div class="max-w-screen-2xl mx-auto bg-primary rounded-xl overflow-hidden relative group">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-20 pointer-events-none"></div>
+<div class="absolute right-0 top-0 h-full w-1/2 opacity-30 group-hover:opacity-40 transition-opacity">
+<img class="w-full h-full object-cover" alt="Minimalist botanical arrangement of eucalyptus and dried flowers in a modern studio setting with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-Inf57p2ULGzZ1OPB_MtRuqJIbY9G7WnB00sbyshXLanTGo_P_94ZrSbMXEKtv5cMFIlamZqPZOg_F7MzXctk6W1TT96nSpokJ_0wy31wEfXweSPPHckKlNGC_aEcCeO3neIuCmwvJ8dT9LloyDWQNEJs694zlwpl15kFV6DHMDQPUHt9_ywIFQNjRqzfpO24TB1C0M9TcvITywlimTshCFWBzgptp6_9cIKg1GuGKAadGylpGNF1bVtrux2r4zQG7thH3neeenAx"/>
+</div>
+<div class="relative z-10 px-12 py-24 flex flex-col items-start max-w-2xl">
+<h2 class="text-5xl font-headline font-bold text-on-primary mb-8">¿Listo para hacer florecer tu marca?</h2>
+<p class="text-on-primary/80 text-lg mb-12 font-body">Estamos aceptando nuevas solicitudes para el Q3 y Q4. Iniciemos una conversación estratégica hoy.</p>
+<button class="bg-surface text-primary px-10 py-5 rounded-md font-label uppercase tracking-widest text-sm font-bold hover:bg-secondary-container transition-all active:scale-95">
+                        Start Project
+                    </button>
+</div>
+</div>
+</section>
+<!-- Strategic Stats Bar -->
+<section class="bg-surface-container-low py-12 px-8 border-y border-outline-variant/15">
+<div class="max-w-screen-2xl mx-auto flex flex-wrap justify-between items-center gap-8">
+<div class="flex flex-col">
+<span class="text-3xl font-headline font-bold text-primary">6</span>
+<span class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface/60">Categorías</span>
+</div>
+<div class="h-8 w-px bg-outline-variant/30 hidden md:block"></div>
+<div class="flex flex-col">
+<span class="text-3xl font-headline font-bold text-primary">72</span>
+<span class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface/60">Servicios</span>
+</div>
+<div class="h-8 w-px bg-outline-variant/30 hidden md:block"></div>
+<div class="flex flex-col">
+<span class="text-3xl font-headline font-bold text-primary">90 Días</span>
+<span class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface/60">Validez de Cotización</span>
+</div>
+<div class="h-8 w-px bg-outline-variant/30 hidden md:block"></div>
+<div class="flex flex-col">
+<span class="text-3xl font-headline font-bold text-primary">2 Rondas</span>
+<span class="text-[10px] font-label uppercase tracking-[0.2em] text-on-surface/60">De Ajustes</span>
+</div>
+</div>
+</section>
+<!-- Solutions Portfolio Grid -->
+<section class="py-24 px-8 max-w-screen-2xl mx-auto" id="portfolio">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="text-4xl md:text-5xl font-headline font-bold mb-6">Soluciones que Trascienden</h2>
+<p class="text-on-surface-variant font-body">Portafolio integral de producción y marketing diseñado para marcas que buscan impacto real y estética impecable.</p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-outline-variant/40 flex items-center justify-center hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-outline-variant/40 flex items-center justify-center hover:bg-surface-variant transition-colors text-primary">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Branding Card -->
+<div class="md:col-span-8 bg-surface-container-highest group relative overflow-hidden h-[450px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80" alt="Modern studio workspace with branding moodboards, fabric swatches, and high-end stationery on a minimalist oak table, natural sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuTbGz07hmPTXJNfweGD1ljYgGaUVPeqv-SShvF5ghc446Xe9M5AzLuADgr8whLnHdYxx7I3OEL-6IkFZ7kXdCq1Xuq5XvWHMXTdPTOz2uyLDQ00Iaw1jwzHDYBvaDoHE_uEWJIuOfRuCkwiEP237a7SpwcqW9QvRjBeShLLi-5n00b3iG9P8Mu1QEsLTFap59kQUtUNfhzCntvdX-If2idTFKC3ucqthMO27mvD-pxc5HD5v9cEO4BCrcHwAXGrUms7XwQv3TFQPu"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-on-primary">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 text-[10px] font-label uppercase tracking-widest mb-4 inline-block">Design</span>
+<h3 class="text-3xl font-headline font-bold mb-2">Branding &amp; Identidad</h3>
+<p class="text-sm font-body opacity-80 max-w-xs">Creamos sistemas visuales que cuentan historias profundas.</p>
+</div>
+</div>
+<!-- Marketing Card -->
+<div class="md:col-span-4 bg-surface-variant group relative overflow-hidden h-[450px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80" alt="Sleek professional filming set with high-end cinema cameras, neon highlights, and production monitors displaying crisp marketing visuals" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyiNwDwyM3s2GyDJATyClqlpLFnFeEMqTC3y0o7ZqMt9UntIwpJLl5AcyvBmn0TTC3cDYwsw5XKa_rkW2mkjc-VkZrArpYSZgJpgJja0eC3xsMdt3i_e1PgvCsFCLvfdV4c_XBx3nVCXBMjJymBG0nYnDFh8s8yScQ2aPcLbuUi2oP-pLbm-SXdYAElqHAKLGlCQo5VbKCei3sgnydc3r7edOoJKl8os5xIVdA7Hr_Ark0MXFN2huiJlQF5_X2HiTb4p0nk5Cprw5D"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-on-primary">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 text-[10px] font-label uppercase tracking-widest mb-4 inline-block">Strategy</span>
+<h3 class="text-3xl font-headline font-bold mb-2">Marketing Digital</h3>
+<p class="text-sm font-body opacity-80">Rigor analítico para audiencias digitales contemporáneas.</p>
+</div>
+</div>
+<!-- BTL & Textiles -->
+<div class="md:col-span-4 bg-surface-variant group relative overflow-hidden h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80" alt="Premium textile workshop showing high-quality embroidered fabrics and bespoke apparel for brand activation in a sunlit boutique setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARhMPBncL1orWTmyoESkTeoHLqjAug7maHMmdHIvdChWwRS4mRJacOKx8AYSYroWehjDsTwFgu9MvmkXdhbyWINlllpWnqtNgrVkoO_2ktXnFtT__QRBtoZZrELvi95guHhmvd7sHjWYAeMfPKQSa135xKPLsXqnP9gE3m5YB9jrSoQYGi7pUh6vF5LN9KThqgWio3kK8p4oIGurXngh7vYlFIkI5Yp7HNGX2AFD2QBnXYVDXluOjyKEcD2672NHuG7NzfPQEzsZ1u"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent"></div>
+<div class="absolute bottom-8 left-8 text-on-primary">
+<h3 class="text-2xl font-headline font-bold">Textiles &amp; BTL</h3>
+</div>
+</div>
+<!-- Production -->
+<div class="md:col-span-8 bg-surface-container-highest group relative overflow-hidden h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80" alt="Behind the scenes of a high-end commercial photo shoot with professional lighting rigs and a minimalist set design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7D1gKdgNzi4Hb01X3HKMJXL_m1DrT06rjdqHunF8YxOw1wepuw18zIHITQ2zwmQLap91nGZPodxVRNrI5KKcJEHs_JH4h1wbsI9sMmLp6dGlxaj9MdyfyRzofyolRcF9SXxsG3-mNmz_usnt-EpvMakxqYaipHVzcwcNL0nnJcMPy_glJWquPLy1XkM3FiKWsluTRWvniezk9CVd1-latfSPv5aEWNzayPZrOo8guTVMDbbcUaEuxYaWcrknApfB-81_h9Q5HqnQ7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent"></div>
+<div class="absolute bottom-8 left-8 text-on-primary">
+<h3 class="text-2xl font-headline font-bold">Producción Audiovisual</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Service Navigation & Plans (Editorial Sidebar Layout) -->
+<section class="bg-surface-container-low py-24" id="services">
+<div class="max-w-screen-2xl mx-auto px-8 flex flex-col md:flex-row gap-16">
+<!-- Sidebar Nav -->
+<div class="w-full md:w-1/4">
+<h2 class="text-3xl font-headline font-bold mb-12">Detalle de Servicios</h2>
+<ul class="space-y-6">
+<li>
+<button class="text-left group flex items-center gap-4 w-full">
+<span class="w-8 h-px bg-primary"></span>
+<span class="font-label uppercase tracking-widest text-sm text-primary font-bold">Consultoría Estratégica</span>
+</button>
+</li>
+<li>
+<button class="text-left group flex items-center gap-4 w-full opacity-40 hover:opacity-100 transition-opacity">
+<span class="w-8 h-px bg-on-surface group-hover:bg-primary transition-colors"></span>
+<span class="font-label uppercase tracking-widest text-sm text-on-surface">Identidad de Marca</span>
+</button>
+</li>
+<li>
+<button class="text-left group flex items-center gap-4 w-full opacity-40 hover:opacity-100 transition-opacity">
+<span class="w-8 h-px bg-on-surface group-hover:bg-primary transition-colors"></span>
+<span class="font-label uppercase tracking-widest text-sm text-on-surface">Producción Impresa</span>
+</button>
+</li>
+<li>
+<button class="text-left group flex items-center gap-4 w-full opacity-40 hover:opacity-100 transition-opacity">
+<span class="w-8 h-px bg-on-surface group-hover:bg-primary transition-colors"></span>
+<span class="font-label uppercase tracking-widest text-sm text-on-surface">Gestión de Medios</span>
+</button>
+</li>
+</ul>
+</div>
+<!-- Plans Content -->
+<div class="w-full md:w-3/4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Plan 1 -->
+<div class="bg-surface p-10 rounded-xl shadow-[0px_20px_40px_rgba(29,28,23,0.04)] border border-outline-variant/10">
+<span class="text-primary font-label uppercase tracking-widest text-[10px] font-bold mb-4 block">Fase 01</span>
+<h4 class="text-xl font-headline font-bold mb-2">Asesoría Base</h4>
+<p class="text-on-surface-variant text-sm mb-8 font-body">Análisis inicial de mercado y definición de ruta creativa.</p>
+<div class="space-y-4 mb-10">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">Diagnóstico de marca</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">Hoja de ruta estratégica</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">1 Sesión presencial</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/20">
+<span class="block text-[10px] font-label uppercase tracking-widest text-on-surface/40 mb-1">Inversión desde</span>
+<span class="text-2xl font-headline font-bold">$1.2M <small class="text-xs font-normal">COP</small></span>
+</div>
+</div>
+<!-- Plan 2 (Highlighted) -->
+<div class="bg-surface-container-highest p-10 rounded-xl shadow-[0px_20px_40px_rgba(29,28,23,0.06)] scale-105 border border-primary/20 relative">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] font-label uppercase tracking-widest px-4 py-1">Más Solicitado</div>
+<span class="text-primary font-label uppercase tracking-widest text-[10px] font-bold mb-4 block">Fase 02</span>
+<h4 class="text-xl font-headline font-bold mb-2">Identidad Full</h4>
+<p class="text-on-surface-variant text-sm mb-8 font-body">Desarrollo visual completo para marcas en etapa de florecimiento.</p>
+<div class="space-y-4 mb-10">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">Manual de marca 40pg</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">Papelería corporativa</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">Assets para redes</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">2 Rondas de ajustes</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/20">
+<span class="block text-[10px] font-label uppercase tracking-widest text-on-surface/40 mb-1">Inversión desde</span>
+<span class="text-2xl font-headline font-bold">$3.5M <small class="text-xs font-normal">COP</small></span>
+</div>
+</div>
+<!-- Plan 3 -->
+<div class="bg-surface p-10 rounded-xl shadow-[0px_20px_40px_rgba(29,28,23,0.04)] border border-outline-variant/10">
+<span class="text-primary font-label uppercase tracking-widest text-[10px] font-bold mb-4 block">Producción</span>
+<h4 class="text-xl font-headline font-bold mb-2">Print &amp; Textile</h4>
+<p class="text-on-surface-variant text-sm mb-8 font-body">Materialización física de la marca con calidad de exportación.</p>
+<div class="space-y-4 mb-10">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">Producción textil</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">Packaging premium</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span class="text-sm font-body">Logística BTL</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/20">
+<span class="block text-[10px] font-label uppercase tracking-widest text-on-surface/40 mb-1">Cotización a medida</span>
+<span class="text-lg font-headline font-bold italic">Bajo Demanda</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section (High-end Magazine Layout) -->
+<section class="py-32 px-8 overflow-hidden" id="about">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-24">
+<div class="w-full md:w-5/12 order-2 md:order-1">
+<div class="relative">
+<img class="w-full aspect-[4/5] object-cover rounded-sm shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000" alt="Elegant architectural minimalist interior of a design studio in Bogota, featuring high ceilings, concrete walls, and large windows with lush green plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6RhuFe1QMeYNIHeK6VW2PqHcEMTGcKYhjKs6Eg_oejydog6ujvFAuk4rC35pbqmTBIrnp8g2v0GsdQPvvEmoW9NTa0WfwELuyaYOdi-LpAJXJLYGitUkQK4lGzwJVA73OXcZwPiELUax63XWu4bztvdIwLyLnHSDUUL97zs4IXZ3-sDHvOK8k6cIU8vpO7GrSp3TRs0Ofthi9AiBrjQVWQ0w5xIKt-NKuiXLT4A9CPv8vYLndoa8LFn8CEqFF3Cvov8KKi2fEXJlZ"/>
+<div class="absolute -bottom-12 -right-12 w-64 h-64 bg-surface-container-highest -z-10"></div>
+</div>
+</div>
+<div class="w-full md:w-7/12 order-1 md:order-2">
+<span class="text-primary font-label uppercase tracking-[0.3em] text-xs mb-8 block">El Manifiesto</span>
+<h2 class="text-5xl md:text-7xl font-headline font-bold mb-10 leading-tight">Creatividad con Propósito <br/><span class="italic font-normal">y Rigor.</span></h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+<div>
+<h5 class="font-headline font-bold text-xl mb-4">Nuestra Raíz</h5>
+<p class="text-on-surface-variant font-body leading-relaxed">
+                                Nacidos en el corazón de Bogotá, entendemos la vitalidad de un mercado en constante cambio. No solo diseñamos; construimos estructuras que permiten a las marcas crecer de forma orgánica y sostenible.
+                            </p>
+</div>
+<div>
+<h5 class="font-headline font-bold text-xl mb-4">El Proceso</h5>
+<p class="text-on-surface-variant font-body leading-relaxed">
+                                Aplicamos un enfoque de producción "Zero Noise". Cada elemento visual, cada decisión estratégica, tiene una función específica. Menos decoración, más intención.
+                            </p>
+</div>
+</div>
+<div class="mt-16 pt-12 border-t border-outline-variant/30 flex items-center gap-8">
+<div>
+<p class="text-3xl font-headline font-bold">20+</p>
+<p class="text-[10px] font-label uppercase tracking-widest text-on-surface/50">Clientes Activos</p>
+</div>
+<div class="w-px h-10 bg-outline-variant"></div>
+<div>
+<p class="text-3xl font-headline font-bold"> Bogotá</p>
+<p class="text-[10px] font-label uppercase tracking-widest text-on-surface/50">Base de Operaciones</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust & Conditions -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="text-center mb-20">
+<h2 class="text-3xl font-headline font-bold">Condiciones de Confianza</h2>
+<p class="text-on-surface-variant font-body mt-4">Transparencia absoluta en cada etapa del proyecto.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-surface flex items-center justify-center rounded-full mb-6 border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-3xl">payments</span>
+</div>
+<h4 class="font-headline font-bold text-lg mb-2">Esquema 50/50</h4>
+<p class="text-sm font-body text-on-surface-variant px-6">Anticipo del 50% para inicio de labores y 50% contra entrega final.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-surface flex items-center justify-center rounded-full mb-6 border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-3xl">history</span>
+</div>
+<h4 class="font-headline font-bold text-lg mb-2">Tiempos de Entrega</h4>
+<p class="text-sm font-body text-on-surface-variant px-6">Cronogramas estrictos definidos desde el día 01 del proyecto.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-surface flex items-center justify-center rounded-full mb-6 border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-3xl">verified</span>
+</div>
+<h4 class="font-headline font-bold text-lg mb-2">Garantía de Calidad</h4>
+<p class="text-sm font-body text-on-surface-variant px-6">Revisiones exhaustivas y seguimiento post-entrega de 15 días.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#1d1c17]/10 dark:border-[#fef9f1]/10 bg-[#f8f3eb] dark:bg-[#1d1c17]">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-xl font-black text-[#1d1c17] dark:text-[#fef9f1] uppercase tracking-tighter mb-2">Saheylio Studio</div>
+<p class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1d1c17]/50 dark:text-[#fef9f1]/50 italic">© 2024 Saheylio Studio. Bogota-based Strategic Rigor.</p>
+</div>
+<div class="flex gap-10">
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1d1c17]/50 dark:text-[#fef9f1]/50 hover:text-[#1d1c17] transition-all duration-500 hover:underline" href="#">Instagram</a>
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1d1c17]/50 dark:text-[#fef9f1]/50 hover:text-[#1d1c17] transition-all duration-500 hover:underline" href="#">LinkedIn</a>
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1d1c17]/50 dark:text-[#fef9f1]/50 hover:text-[#1d1c17] transition-all duration-500 hover:underline" href="#">Behance</a>
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1d1c17]/50 dark:text-[#fef9f1]/50 hover:text-[#1d1c17] transition-all duration-500 hover:underline underline" href="#">Journal</a>
+</div>
+</div>
+</footer>
+</body></html>

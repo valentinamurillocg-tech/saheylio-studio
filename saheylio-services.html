@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saheylio Studio — Servicios</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0C0A;
+    --surface: #161512;
+    --card: #1C1B18;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(201,169,110,0.35);
+    --gold: #C9A96E;
+    --gold-dim: rgba(201,169,110,0.15);
+    --text: #EDE9DF;
+    --muted: #7A7670;
+    --dim: #4A4844;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: 300;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,12,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px; font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-cta {
+    font-family: var(--font-body);
+    font-size: 13px; font-weight: 400;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(201,169,110,0.4);
+    padding: 8px 20px;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-dim); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 40px 80px;
+    max-width: 1200px; margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-label::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 300; line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 15px; font-weight: 300;
+    color: var(--muted); line-height: 1.8;
+    max-width: 520px;
+  }
+  .hero-stats {
+    display: flex; gap: 48px;
+    margin-top: 64px; padding-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 36px; font-weight: 300;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ── TABS ── */
+  .tabs-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 40px;
+  }
+  .tabs-nav {
+    display: flex; gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    font-family: var(--font-body);
+    font-size: 12px; font-weight: 400;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--dim);
+    background: none; border: none;
+    padding: 24px 28px; cursor: pointer;
+    position: relative; white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .tab-btn::after {
+    content: ''; position: absolute;
+    bottom: -1px; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--gold); }
+  .tab-btn.active::after { transform: scaleX(1); }
+
+  /* ── PANELS ── */
+  .tab-panel { display: none; padding: 60px 0 80px; }
+  .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform:none; } }
+
+  .section-group { margin-bottom: 64px; }
+  .section-group:last-child { margin-bottom: 0; }
+
+  .group-label {
+    font-size: 10px; font-weight: 400;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .group-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: var(--border);
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--card);
+    padding: 32px 28px;
+    display: flex; flex-direction: column;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .service-card:hover {
+    background: var(--surface);
+  }
+  .card-name {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 400;
+    line-height: 1.2; color: var(--text);
+    margin-bottom: 14px;
+  }
+  .card-desc {
+    font-size: 13px; font-weight: 300;
+    color: var(--muted); line-height: 1.7;
+    flex: 1; margin-bottom: 24px;
+  }
+  .card-footer {
+    display: flex; align-items: flex-end;
+    justify-content: space-between; gap: 8px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .card-price {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 600;
+    color: var(--gold);
+  }
+  .card-time {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--dim); text-align: right;
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    border-top: 1px solid var(--border);
+    padding: 100px 40px;
+    text-align: center;
+  }
+  .cta-inner { max-width: 600px; margin: 0 auto; }
+  .cta-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 300; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .cta-section h2 em { font-style: italic; color: var(--gold); }
+  .cta-section p {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.8; margin-bottom: 40px;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 12px; font-weight: 400;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--bg);
+    background: var(--gold);
+    padding: 16px 48px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .cta-btn:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 300;
+    color: var(--muted);
+  }
+  .footer-logo span { color: var(--gold); font-style: italic; }
+  .footer-note { font-size: 12px; color: var(--dim); }
+
+  @media (max-width: 768px) {
+    nav, .hero, .tabs-section { padding-left: 20px; padding-right: 20px; }
+    .hero { padding-top: 60px; padding-bottom: 48px; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    .tab-btn { padding: 20px 16px; font-size: 11px; }
+    .cta-section { padding: 60px 20px; }
+    footer { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Saheylio<span>Studio</span></a>
+  <a href="mailto:hola@saheyliostudio.com" class="nav-cta">Cotizar proyecto</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Portafolio completo</p>
+  <h1>Nuestros<br><em>servicios</em></h1>
+  <p class="hero-sub">Desde la estrategia hasta la producción física, cubrimos cada punto de contacto de tu marca con criterio creativo y ejecución impecable.</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Categorías</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">60+</div>
+      <div class="stat-label">Servicios</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">360°</div>
+      <div class="stat-label">Visión de marca</div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS -->
+<section class="tabs-section">
+  <nav class="tabs-nav" role="tablist">
+    <button class="tab-btn active" onclick="showTab('consultoria',this)" role="tab">Consultoría</button>
+    <button class="tab-btn" onclick="showTab('identidad',this)" role="tab">Identidad & Marca</button>
+    <button class="tab-btn" onclick="showTab('impresos',this)" role="tab">Impresos & BTL</button>
+    <button class="tab-btn" onclick="showTab('textiles',this)" role="tab">Textiles</button>
+    <button class="tab-btn" onclick="showTab('web',this)" role="tab">Web & Digital</button>
+    <button class="tab-btn" onclick="showTab('marketing',this)" role="tab">Marketing Digital</button>
+  </nav>
+
+  <!-- CONSULTORÍA -->
+  <div class="tab-panel active" id="tab-consultoria">
+    <div class="section-group">
+      <p class="group-label">Estrategia & Posicionamiento</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Plan de Marketing 360°</div>
+          <div class="card-desc">Análisis situacional, objetivos SMART, estrategia de canales, calendario de acciones y KPIs.</div>
+          <div class="card-footer"><span class="card-price">Desde $1.800.000</span><span class="card-time">15–20 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Investigación de Mercado</div>
+          <div class="card-desc">Público objetivo, encuestas o focus group, análisis de tendencias e informe estratégico.</div>
+          <div class="card-footer"><span class="card-price">Desde $900.000</span><span class="card-time">10–15 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Análisis de Competencia</div>
+          <div class="card-desc">Mapeo de 5 competidores, benchmark de precios, DOFA y recomendaciones de diferenciación.</div>
+          <div class="card-footer"><span class="card-price">Desde $700.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Estrategia de Lanzamiento</div>
+          <div class="card-desc">Plan go-to-market, propuesta de valor, plan de comunicación por fases y acciones tácticas.</div>
+          <div class="card-footer"><span class="card-price">Desde $1.400.000</span><span class="card-time">10–15 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Auditoría de Marca</div>
+          <div class="card-desc">Revisión de identidad visual, tono de comunicación, presencia digital y plan de mejora.</div>
+          <div class="card-footer"><span class="card-price">Desde $850.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-group">
+      <p class="group-label">Formación & Mentoría</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Talleres de Marca Interna</div>
+          <div class="card-desc">Sesión de 2 horas (hasta 10 personas), ejercicios de alineación y material descargable.</div>
+          <div class="card-footer"><span class="card-price">Desde $600.000</span><span class="card-time">1 día</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Capacitación Marketing Digital</div>
+          <div class="card-desc">Taller teórico-práctico de 3 horas: redes sociales, pauta digital o SEO (a elección).</div>
+          <div class="card-footer"><span class="card-price">Desde $500.000</span><span class="card-time">1 día</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Mentoría a Equipos</div>
+          <div class="card-desc">Sesión personalizada de 1,5 h presencial o virtual, con hoja de ruta de pasos concretos.</div>
+          <div class="card-footer"><span class="card-price">Desde $350.000</span><span class="card-time">1 sesión</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Diagnóstico Digital</div>
+          <div class="card-desc">Evaluación de sitio web, redes sociales, SEO básico y presencia en Google con informe.</div>
+          <div class="card-footer"><span class="card-price">Desde $650.000</span><span class="card-time">5–7 días</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDENTIDAD -->
+  <div class="tab-panel" id="tab-identidad">
+    <div class="section-group">
+      <p class="group-label">Branding & Identidad Visual</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Naming</div>
+          <div class="card-desc">Proceso creativo de nombre de marca: 3 propuestas con argumentación y verificación de disponibilidad.</div>
+          <div class="card-footer"><span class="card-price">Desde $850.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Logo y Sistema Visual</div>
+          <div class="card-desc">3 propuestas, 2 rondas de ajuste, entrega en todos los formatos (PNG, SVG, PDF, EPS).</div>
+          <div class="card-footer"><span class="card-price">Desde $1.200.000</span><span class="card-time">10–15 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Manual de Marca</div>
+          <div class="card-desc">Reglas de uso de identidad visual: colores, tipografías y aplicaciones básicas.</div>
+          <div class="card-footer"><span class="card-price">Desde $900.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Brand Book Completo</div>
+          <div class="card-desc">Manual completo + propósito, valores, personalidad, tono de voz y aplicaciones avanzadas.</div>
+          <div class="card-footer"><span class="card-price">Desde $2.200.000</span><span class="card-time">15–20 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Brandstory / Storytelling</div>
+          <div class="card-desc">Historia de marca: origen, propósito, arquetipo y mensaje central aplicado a materiales.</div>
+          <div class="card-footer"><span class="card-price">Desde $750.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Tono de Comunicación</div>
+          <div class="card-desc">Guía de voz y personalidad: tono escrito, ejemplos aplicados y palabras clave.</div>
+          <div class="card-footer"><span class="card-price">Desde $600.000</span><span class="card-time">5–7 días</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-group">
+      <p class="group-label">Papelería Corporativa</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Tarjetas de Presentación</div>
+          <div class="card-desc">Papel premium 350 g, acabado mate o brillante, plastificado o UV selectivo. Desde 100 und.</div>
+          <div class="card-footer"><span class="card-price">$280.000 / 100 und</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Papel Membretado</div>
+          <div class="card-desc">Hoja corporativa en tamaño carta: versión impresa y digital editable en Word o Google Docs.</div>
+          <div class="card-footer"><span class="card-price">Desde $350.000</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Sobres Corporativos</div>
+          <div class="card-desc">Diseño e impresión de sobres oficio o carta con logo, en papel bond o kraft. Desde 100 und.</div>
+          <div class="card-footer"><span class="card-price">$420.000 / 100 und</span><span class="card-time">5–7 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Carpetas Corporativas</div>
+          <div class="card-desc">Cartulina 300 g con plastificado mate, impresión a 4 colores. Desde 50 unidades.</div>
+          <div class="card-footer"><span class="card-price">$850.000 / 50 und</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Credenciales / Carnés</div>
+          <div class="card-desc">PVC tamaño tarjeta de crédito, laminado, con o sin QR, cordón o clip incluido. Desde 10 und.</div>
+          <div class="card-footer"><span class="card-price">$25.000 / und</span><span class="card-time">5–7 días</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPRESOS -->
+  <div class="tab-panel" id="tab-impresos">
+    <div class="section-group">
+      <p class="group-label">Material Publicitario Impreso</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Flyers & Volantes</div>
+          <div class="card-desc">Papel couché 150 g, 4 colores, media carta o cuarto de carta. Desde 500 unidades.</div>
+          <div class="card-footer"><span class="card-price">$280.000 / 500 und</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Brochures & Catálogos</div>
+          <div class="card-desc">4 u 8 páginas en papel couché 200 g, acabado mate o brillante. Desde 100 unidades.</div>
+          <div class="card-footer"><span class="card-price">$650.000 / 100 und</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Revistas & Boletines</div>
+          <div class="card-desc">Diseño editorial hasta 20 páginas, maquetación y portada a color. PDF interactivo incluido.</div>
+          <div class="card-footer"><span class="card-price">Desde $1.200.000</span><span class="card-time">10–15 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Afiches & Pósters</div>
+          <div class="card-desc">50x70 cm o 60x90 cm en papel couché o fotográfico, alta resolución. Desde 50 unidades.</div>
+          <div class="card-footer"><span class="card-price">$450.000 / 50 und</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Pendones & Roll-ups</div>
+          <div class="card-desc">Arte + impresión en lona o vinilo brillante + estructura metálica incluida. 80x200 cm.</div>
+          <div class="card-footer"><span class="card-price">$320.000 / und</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Vallas & Lonas Gran Formato</div>
+          <div class="card-desc">Lona mínimo 1x2 m para exterior, resistente a la intemperie, con ojales para instalación.</div>
+          <div class="card-footer"><span class="card-price">$180.000 / m²</span><span class="card-time">5–7 días</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-group">
+      <p class="group-label">Señalética & BTL</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Señalización Corporativa</div>
+          <div class="card-desc">Sistema de señalética para oficinas o locales: dirección, áreas y mapa de planta.</div>
+          <div class="card-footer"><span class="card-price">Desde $1.100.000</span><span class="card-time">10–15 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Vinilos & Rotulación</div>
+          <div class="card-desc">Corte de vinilos para vidrios, paredes o vehículos. Instalación incluida en Bogotá.</div>
+          <div class="card-footer"><span class="card-price">$250.000 / m²</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Material Punto de Venta</div>
+          <div class="card-desc">Stoppers, wobblers, tiras de góndola y habladores para activaciones en tienda.</div>
+          <div class="card-footer"><span class="card-price">$600.000 / set 50 und</span><span class="card-time">5–7 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Stands & Exhibidores</div>
+          <div class="card-desc">Stand pop-up o exhibidor de cartón/madera con armado y personalización de marca.</div>
+          <div class="card-footer"><span class="card-price">Desde $850.000</span><span class="card-time">15–20 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Empaques & Etiquetas</div>
+          <div class="card-desc">Diseño con identidad de marca, dieline técnico, papel adhesivo, kraft o termoencogible.</div>
+          <div class="card-footer"><span class="card-price">$480.000 / 200 und</span><span class="card-time">7–10 días</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEXTILES -->
+  <div class="tab-panel" id="tab-textiles">
+    <div class="section-group">
+      <p class="group-label">Textiles & Merchandising</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Camisetas Personalizadas</div>
+          <div class="card-desc">100% algodón peinado, logo a 1–2 colores, tallas S a XL. Lote mínimo 12 unidades.</div>
+          <div class="card-footer"><span class="card-price">$32.000 / und</span><span class="card-time">5–8 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Gorras & Viseras</div>
+          <div class="card-desc">Bordado o serigrafía, estilos cap, trucker o 5 paneles. Lote mínimo 12 unidades.</div>
+          <div class="card-footer"><span class="card-price">$28.000 / und</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Chaquetas & Buzos</div>
+          <div class="card-desc">Bota francesa, polar o cortavientos con logo bordado. Lote mínimo 6 unidades.</div>
+          <div class="card-footer"><span class="card-price">$95.000 / und</span><span class="card-time">10–15 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Trapos & Toallas</div>
+          <div class="card-desc">Microfibra o toalla con logo bordado o sublimado. Uso corporativo, deportivo o eventos.</div>
+          <div class="card-footer"><span class="card-price">$18.000 / und</span><span class="card-time">5–8 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Uniformes Corporativos</div>
+          <div class="card-desc">Camisa o polo + pantalón o delantal con asesoría de color y ficha técnica. Cotización por lote.</div>
+          <div class="card-footer"><span class="card-price">Cotización por lote</span><span class="card-time">15–20 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Kits para Eventos</div>
+          <div class="card-desc">Camiseta + gorra + bolsa con diseño unificado de marca. Ideal para lanzamientos.</div>
+          <div class="card-footer"><span class="card-price">Cotización por lote</span><span class="card-time">15–20 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Serigrafía & Sublimación</div>
+          <div class="card-desc">Hasta 4 colores en serigrafía o sublimación a todo color. Mayor volumen = menor precio.</div>
+          <div class="card-footer"><span class="card-price">$8.000 / und (mín. 24)</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Bordado & DTF</div>
+          <div class="card-desc">Bordado computarizado o transferencia directa multicolor de alta definición. Mín. 6 und.</div>
+          <div class="card-footer"><span class="card-price">$12.000 / und</span><span class="card-time">5–7 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Merchandising a Volumen</div>
+          <div class="card-desc">Bolígrafos, libretas, llaveros, porta-documentos y más con logo. Mayor cantidad = mejor precio.</div>
+          <div class="card-footer"><span class="card-price">Desde $5.000 / und</span><span class="card-time">10–20 días</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEB -->
+  <div class="tab-panel" id="tab-web">
+    <div class="section-group">
+      <p class="group-label">Diseño Web & UX/UI</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Landing Pages</div>
+          <div class="card-desc">Página de aterrizaje optimizada para conversión, formulario de captura y responsive.</div>
+          <div class="card-footer"><span class="card-price">Desde $1.500.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Sitios Web Corporativos</div>
+          <div class="card-desc">Hasta 5 páginas, diseño responsivo, CMS editable (WordPress), SEO básico on-page.</div>
+          <div class="card-footer"><span class="card-price">Desde $3.200.000</span><span class="card-time">20–30 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Tiendas E-Commerce</div>
+          <div class="card-desc">Hasta 50 productos, carrito, pasarela Wompi / PayU / Mercado Pago, gestión de inventario.</div>
+          <div class="card-footer"><span class="card-price">Desde $5.500.000</span><span class="card-time">25–35 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">UX/UI Design</div>
+          <div class="card-desc">Investigación, wireframes, interfaces en alta fidelidad (Figma) y sistema de componentes.</div>
+          <div class="card-footer"><span class="card-price">Desde $2.800.000</span><span class="card-time">15–20 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Prototipado Interactivo</div>
+          <div class="card-desc">Prototipo navegable en Figma con flujos completos, listo para inversores o equipo técnico.</div>
+          <div class="card-footer"><span class="card-price">Desde $1.200.000</span><span class="card-time">7–12 días</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-group">
+      <p class="group-label">Diseño para Activos Digitales</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Piezas para Redes Sociales</div>
+          <div class="card-desc">Pack de 10 artes estáticas o animadas para Instagram, Facebook o LinkedIn.</div>
+          <div class="card-footer"><span class="card-price">$650.000 / pack 10</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Banners Publicitarios</div>
+          <div class="card-desc">6 formatos para Google Display, Meta Ads o email (leaderboard, square, rectangle...).</div>
+          <div class="card-footer"><span class="card-price">$550.000 / set 6</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">E-mail Templates</div>
+          <div class="card-desc">Plantilla HTML responsive compatible con Mailchimp, ActiveCampaign o Brevo.</div>
+          <div class="card-footer"><span class="card-price">Desde $480.000</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Presentaciones Corporativas</div>
+          <div class="card-desc">Hasta 20 diapositivas en PowerPoint o Google Slides, plantilla editable con guía de marca.</div>
+          <div class="card-footer"><span class="card-price">Desde $700.000</span><span class="card-time">5–7 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Infografías</div>
+          <div class="card-desc">Estática o animada (motion), jerarquía visual clara, optimizada para redes o descarga digital.</div>
+          <div class="card-footer"><span class="card-price">$350.000 / und</span><span class="card-time">2–4 días</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKETING -->
+  <div class="tab-panel" id="tab-marketing">
+    <div class="section-group">
+      <p class="group-label">Estrategia de Contenidos & SEO</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Copywriting & Storytelling</div>
+          <div class="card-desc">5 piezas de contenido para web, redes o ventas. Tono ajustado a la marca, revisión SEO.</div>
+          <div class="card-footer"><span class="card-price">$600.000 / 5 piezas</span><span class="card-time">3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Blog Posts Optimizados</div>
+          <div class="card-desc">Artículo 800–1.500 palabras con estructura SEO (H1, H2, meta description) e imagen sugerida.</div>
+          <div class="card-footer"><span class="card-price">$220.000 / artículo</span><span class="card-time">2–3 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">SEO On-Page</div>
+          <div class="card-desc">Optimización de hasta 10 páginas: títulos, meta, alt text, estructura de URLs y velocidad.</div>
+          <div class="card-footer"><span class="card-price">Desde $900.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">SEO Técnico</div>
+          <div class="card-desc">Auditoría técnica: rastreo, Core Web Vitals, errores 404, sitemaps y datos estructurados.</div>
+          <div class="card-footer"><span class="card-price">Desde $1.100.000</span><span class="card-time">10–12 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Auditoría SEO</div>
+          <div class="card-desc">Visibilidad orgánica, palabras clave, backlinks, competencia e informe con plan de acción.</div>
+          <div class="card-footer"><span class="card-price">Desde $750.000</span><span class="card-time">5–7 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Link Building</div>
+          <div class="card-desc">Hasta 5 enlaces de calidad en el primer mes, con prospección y redacción de guest posts.</div>
+          <div class="card-footer"><span class="card-price">$850.000 / mes</span><span class="card-time">Mensual</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-group">
+      <p class="group-label">Publicidad SEM & Pauta Digital</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Google Ads</div>
+          <div class="card-desc">Campañas de búsqueda: palabras clave, anuncios, conversiones y reporte mensual. Pauta aparte.</div>
+          <div class="card-footer"><span class="card-price">$900.000 / mes</span><span class="card-time">Config. 3 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Performance Max</div>
+          <div class="card-desc">Activos multimedia, audiencias, seguimiento de conversiones y optimización continua.</div>
+          <div class="card-footer"><span class="card-price">$1.100.000 / mes</span><span class="card-time">Config. 3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Meta Ads</div>
+          <div class="card-desc">Facebook e Instagram Ads: audiencias, creatividades, A/B testing y pixel de conversión.</div>
+          <div class="card-footer"><span class="card-price">$900.000 / mes</span><span class="card-time">Config. 3 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">TikTok Ads</div>
+          <div class="card-desc">Campañas con pixel, segmentación por intereses y creatividades en formato vertical.</div>
+          <div class="card-footer"><span class="card-price">$950.000 / mes</span><span class="card-time">Config. 3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">LinkedIn Ads</div>
+          <div class="card-desc">Segmentación B2B por cargo, sector e industria. Formatos Sponsored Content o InMail.</div>
+          <div class="card-footer"><span class="card-price">$1.000.000 / mes</span><span class="card-time">Config. 3–5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Remarketing</div>
+          <div class="card-desc">Campañas en Google o Meta para usuarios que ya visitaron o interactuaron con la marca.</div>
+          <div class="card-footer"><span class="card-price">$750.000 / mes</span><span class="card-time">Config. 2–3 días</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-group">
+      <p class="group-label">Social Media & Comunidades</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Gestión de Redes Sociales</div>
+          <div class="card-desc">2 redes (Insta + Facebook o LinkedIn): 12 piezas/mes, respuesta a comentarios y reporte.</div>
+          <div class="card-footer"><span class="card-price">$1.500.000 / mes</span><span class="card-time">Inicio 5 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Parrilla de Contenidos</div>
+          <div class="card-desc">20 ideas de publicaciones, formatos sugeridos, copy orientativo y calendario en Notion.</div>
+          <div class="card-footer"><span class="card-price">$600.000 / mes</span><span class="card-time">5–7 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Creación de Comunidades</div>
+          <div class="card-desc">Estrategia de comunidad digital: plataforma, plan inicial, guía de interacción y moderación.</div>
+          <div class="card-footer"><span class="card-price">Desde $800.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Social Listening</div>
+          <div class="card-desc">Monitoreo de menciones, competidores y tendencias. Informe con insights y alertas de crisis.</div>
+          <div class="card-footer"><span class="card-price">$700.000 / mes</span><span class="card-time">Inicio 2 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Influencer Outreach</div>
+          <div class="card-desc">Hasta 10 microinfluencers, propuesta de colaboración, seguimiento y reporte de resultados.</div>
+          <div class="card-footer"><span class="card-price">Desde $900.000</span><span class="card-time">10–15 días</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-group">
+      <p class="group-label">Growth & CRM</p>
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-name">Email Marketing / Automatización</div>
+          <div class="card-desc">Flujo de bienvenida o nurturing: hasta 5 correos con diseño y copy incluidos.</div>
+          <div class="card-footer"><span class="card-price">Desde $950.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Funnels de Conversión</div>
+          <div class="card-desc">Landing + secuencia de emails + página de gracias + integración con pasarela o CRM.</div>
+          <div class="card-footer"><span class="card-price">Desde $2.200.000</span><span class="card-time">15–20 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Lead Nurturing</div>
+          <div class="card-desc">Hasta 8 correos personalizados por etapa del funnel, configurados en herramienta de automatización.</div>
+          <div class="card-footer"><span class="card-price">Desde $800.000</span><span class="card-time">7–10 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">CRM Setup & Gestión</div>
+          <div class="card-desc">HubSpot, Zoho o similar: pipeline, automatizaciones básicas y capacitación de 1 hora.</div>
+          <div class="card-footer"><span class="card-price">Desde $1.400.000</span><span class="card-time">10–15 días</span></div>
+        </div>
+        <div class="service-card">
+          <div class="card-name">Análisis & Reportes</div>
+          <div class="card-desc">Dashboard mensual en Looker Studio con GA4, Meta Insights y Google Ads. Reporte ejecutivo.</div>
+          <div class="card-footer"><span class="card-price">$700.000 / mes</span><span class="card-time">Config. 5 días</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>¿Listo para elevar<br><em>tu marca?</em></h2>
+    <p>Cuéntanos tu proyecto y te enviamos una propuesta personalizada sin costo en menos de 24 horas.</p>
+    <a href="mailto:hola@saheyliostudio.com" class="cta-btn">Solicitar cotización</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Saheylio<span>Studio</span></div>
+  <div class="footer-note">© 2025 Saheylio Studio — Bogotá, Colombia</div>
+</footer>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
